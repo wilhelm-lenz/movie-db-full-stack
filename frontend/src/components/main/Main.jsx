@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import "./Main.scss";
 
-const Main = () => {
-  return <div></div>;
+const Main = ({ children }) => {
+  return <main>{children}</main>;
 };
 
 export default Main;

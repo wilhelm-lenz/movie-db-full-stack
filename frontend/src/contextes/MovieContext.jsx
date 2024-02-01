@@ -4,9 +4,9 @@ import { createContext, useState } from "react";
 const MovieContext = createContext();
 
 const MovieContextProvider = ({ children }) => {
-  const [movies, setMovies] = useState("Filme hier");
+  const [movies, setMovies] = useState([]);
   return (
-    <MovieContext.Provider values={{ movies, setMovies }}>
+    <MovieContext.Provider value={{ movies, setMovies }}>
       {children}
     </MovieContext.Provider>
   );

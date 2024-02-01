@@ -1,7 +1,24 @@
 import "./Footer.scss";
+import YouTube from "../svg/YouTube";
+import Facebook from "../svg/Facebook";
+import Heart from "../svg/Heart";
 
 const Footer = () => {
-  return <div></div>;
+  return (
+    <footer className="footer">
+      <p className="imprint">Imprint</p>
+      <p className="footer-text">
+        Made with love in heart and popcorn in tummy.
+        <span className="heart-icon">
+          <Heart />
+        </span>
+      </p>
+      <div className="social-wrapper">
+        <YouTube />
+        <Facebook />
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;
