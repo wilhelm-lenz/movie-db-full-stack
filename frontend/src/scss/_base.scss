@@ -13,13 +13,22 @@ html {
 body {
   box-sizing: border-box;
   font-size: 1.6rem;
-  font-family: "Poppins-Light";
+  font-family: variables.$normal-text-font-family-500;
   line-height: 1;
+  background-color: variables.$basic-background-color;
 }
 
 .container {
   max-width: 144rem;
   margin: 0 auto;
+}
+
+.footer-container {
+  max-width: 144rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 a {

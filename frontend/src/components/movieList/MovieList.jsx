@@ -5,13 +5,11 @@ import { MovieContext } from "../../contextes/MovieContext";
 
 const MovieList = () => {
   const { movies, setMovies } = useContext(MovieContext);
-  console.log(movies);
 
   const getAllMovies = async () => {
     const res = await fetch(`http://localhost:8000/api/v1/movies`);
     const dataObj = await res.json();
     const { status, data, error } = dataObj;
-    console.log(data);
 
     if (status !== "success") console.log(error);
     else setMovies(data.movies);

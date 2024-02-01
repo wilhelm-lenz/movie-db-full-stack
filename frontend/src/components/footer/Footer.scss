@@ -1,0 +1,29 @@
+@use "../../scss/variables";
+
+.footer {
+  background-color: variables.$accent-color;
+  padding-block: 5rem;
+  .imprint {
+    color: variables.$basic-background-color;
+    font-family: variables.$normal-text-font-family-500;
+    font-size: 2.4rem;
+  }
+
+  .footer-text {
+    color: variables.$basic-background-color;
+    font-family: variables.$normal-text-font-family-500;
+    font-size: 2.4rem;
+    display: flex;
+    align-items: center;
+    column-gap: 1.6rem;
+
+    &.heart-icon {
+    }
+  }
+
+  .social-wrapper {
+    display: flex;
+    align-items: center;
+    column-gap: 3rem;
+  }
+}

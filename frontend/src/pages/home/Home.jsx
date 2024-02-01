@@ -8,7 +8,6 @@ const Home = () => {
     <>
       <Main>
         <Hero />
-        <h2>Home</h2>
         <MovieList />
       </Main>
     </>

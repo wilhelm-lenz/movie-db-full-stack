@@ -22,7 +22,7 @@ const MovieListItem = ({ movie }) => {
     posterURLArray[0] = "https";
   }
   const posterURL = posterURLArray?.join(":");
-  console.log(posterURL);
+
   // const posterURL = movie?.poster ? movie.poster : defaultPoster;
   return (
     <li className="movie-list-item">
