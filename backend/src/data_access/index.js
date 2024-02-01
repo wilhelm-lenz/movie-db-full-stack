@@ -1,0 +1,1 @@
+exports.MovieDAO = require("./MovieDAO");
