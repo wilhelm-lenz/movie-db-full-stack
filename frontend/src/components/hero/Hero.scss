@@ -1,0 +1,22 @@
+@use "../../scss/variables";
+
+.section-hero {
+  background: url("../../../public/images/moviemagic-1.png") center / cover
+    no-repeat;
+  height: 100vh;
+  color: variables.$heading-color;
+  font-size: 3.4rem;
+  font-family: variables.$heading-font-family-800;
+  line-height: 1.6;
+  padding-top: 25vh;
+  padding-inline: 23vw;
+
+  .heading-primary {
+    & > span {
+      display: block;
+    }
+  }
+
+  .hero-heading-accent {
+  }
+}

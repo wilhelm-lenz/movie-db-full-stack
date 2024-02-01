@@ -1,4 +1,4 @@
-import "./movieList.scss";
+import "./MovieList.scss";
 import MovieListItem from "../movieListItem/MovieListItem";
 import { useContext, useEffect } from "react";
 import { MovieContext } from "../../contextes/MovieContext";
@@ -22,10 +22,10 @@ const MovieList = () => {
   }, []);
 
   return (
-    <section className="section-all-movies">
+    <section className="section-all-movies container">
+      <h2 className="heading-secondary">All Movies</h2>
       <ul className="movie-list">
-        <h2 className="heading-secondary">All Movies</h2>
-        {movies.map((movie) => (
+        {movies?.map((movie) => (
           <MovieListItem key={movie._id} movie={movie} />
         ))}
       </ul>

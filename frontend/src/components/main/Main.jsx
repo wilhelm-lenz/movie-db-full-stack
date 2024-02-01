@@ -2,7 +2,7 @@
 import "./Main.scss";
 
 const Main = ({ children }) => {
-  return <main>{children}</main>;
+  return <main className="">{children}</main>;
 };
 
 export default Main;

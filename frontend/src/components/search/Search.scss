@@ -1,0 +1,35 @@
+@use "../../scss/variables";
+
+.search-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  column-gap: 3.6rem;
+  .search {
+    border-radius: 5rem;
+    border: 3px solid #2a9d8f;
+    font-size: 2.4rem;
+    font-family: variables.$sub-text-font-family-300;
+    background-color: transparent;
+    padding-left: 3rem;
+    color: variables.$text-color;
+    width: 50%;
+
+    &::placeholder {
+      color: variables.$accent-color-50;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+  .search-movie-btn {
+    border-radius: 5rem;
+    font-size: 2.4rem;
+    font-family: variables.$normal-text-font-family-500;
+    padding: 0.8rem 5rem;
+    background-color: variables.$accent-color;
+    color: variables.$text-color;
+    border: none;
+  }
+}

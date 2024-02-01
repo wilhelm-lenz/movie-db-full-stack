@@ -2,8 +2,8 @@ const Star = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24"
-      width="24"
+      height="42"
+      width="39"
       viewBox="0 0 576 512"
     >
       <path
