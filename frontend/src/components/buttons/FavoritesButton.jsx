@@ -43,6 +43,7 @@ const FavoritsButton = ({ btnText, movieId }) => {
     const dataObj = await res.json();
     const { status, error } = dataObj;
     if (status !== "success") console.log(error);
+    setFavoriteMovies(favoriteMovies.filter((movie) => movie._id !== movieId));
     setIsInFavorites(!isInFavorites);
   };
 

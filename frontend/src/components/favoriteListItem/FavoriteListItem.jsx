@@ -52,7 +52,10 @@ const FavoriteListItem = ({ movie }) => {
           </span>
         </Link>
         <span>
-          <FavoritesButton btnText={"Remove from Favorites"} />
+          <FavoritesButton
+            btnText={"Remove from Favorites"}
+            movieId={movie._id}
+          />
         </span>
       </li>
     </>
