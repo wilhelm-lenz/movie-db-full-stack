@@ -1,0 +1,19 @@
+@use "../../scss/variables";
+
+.section-favorite-movies {
+  padding-top: 22rem;
+  .heading-secondary {
+    color: variables.$heading-color;
+    font-family: variables.$heading-font-family-800;
+    font-size: 4.4rem;
+    margin-bottom: 8rem;
+  }
+
+  .favorite-movie-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-rows: 60rem;
+    grid-auto-rows: 65rem;
+    gap: 9.8rem 14rem;
+  }
+}

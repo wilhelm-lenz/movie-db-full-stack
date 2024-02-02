@@ -5,6 +5,7 @@ const MovieContext = createContext();
 
 const MovieContextProvider = ({ children }) => {
   const [movies, setMovies] = useState([]);
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [isInFavorites, setIsInFavorites] = useState(false);
   return (
@@ -16,6 +17,8 @@ const MovieContextProvider = ({ children }) => {
         setSearchTerm,
         isInFavorites,
         setIsInFavorites,
+        favoriteMovies,
+        setFavoriteMovies,
       }}
     >
       {children}

@@ -8,7 +8,7 @@ const defaultPoster = "../../../public/images/defaultPoster.jpg";
 
 const MovieListItem = ({ movie }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
-  if (!movie || !movie.poster) {
+  if (!movie) {
     return null;
   }
 

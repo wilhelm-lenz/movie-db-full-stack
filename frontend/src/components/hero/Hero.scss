@@ -12,9 +12,10 @@
   padding-inline: 23vw;
 
   .heading-primary {
-    & > span {
-      display: block;
-    }
+    max-width: 90%;
+    // & > span {
+    //   display: block;
+    // }
   }
 
   .hero-heading-accent {

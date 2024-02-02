@@ -9,7 +9,8 @@ import EditMovieButton from "../../components/buttons/EditMovieButton";
 const MovieDetails = () => {
   const { state } = useLocation();
   const { id } = useParams();
-  const { movies, setMovies } = useContext(MovieContext);
+  const { movies, setMovies, setFavoriteMovies, isInFavorites } =
+    useContext(MovieContext);
   const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
@@ -17,12 +18,21 @@ const MovieDetails = () => {
       const res = await fetch(`http://localhost:8000/api/v1/movies`);
       const dataObj = await res.json();
       const { status, data, error } = dataObj;
-
       if (status !== "success") console.log(error);
       else setMovies(data.movies);
     };
 
     getAllMovies();
+
+    const getAllFavoriteMovies = async () => {
+      const res = await fetch(`http://localhost:8000/api/v1/favorites`);
+      const dataObj = await res.json();
+      const { status, data, error } = dataObj;
+      if (status !== "success") console.log(error);
+      else setFavoriteMovies(data.favoriteMovies);
+    };
+
+    getAllFavoriteMovies();
   }, [id]);
 
   const handleImageLoaded = () => {
@@ -49,7 +59,7 @@ const MovieDetails = () => {
             {year} | {director}
           </span>
           <div className="btns-wrapper">
-            <FavoritesButton btnText={"Add to Favorites"} />
+            <FavoritesButton btnText={"Add to Favorites"} movieId={id} />
             <EditMovieButton btnText={"Edit Movie"} />
           </div>
           <article className="movie-details-wrapper">

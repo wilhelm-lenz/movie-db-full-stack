@@ -1,0 +1,30 @@
+@use "../../scss/variables";
+
+.favorite-movie-list-item {
+  display: flex;
+  flex-direction: column;
+  max-height: 90%;
+
+  .favorite-movie-list-item-img {
+    width: 100%;
+    height: 50rem;
+    margin-bottom: 2rem;
+    object-fit: fill;
+  }
+
+  .favorite-movie-list-item-title {
+    color: variables.$text-color;
+    font-family: variables.$normal-text-font-family-500;
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .favorite-movie-list-item-director {
+    color: variables.$accent-color;
+    font-family: variables.$sub-text-font-family-300;
+    font-size: 2rem;
+    margin-bottom: 1.6rem;
+    display: block;
+  }
+}

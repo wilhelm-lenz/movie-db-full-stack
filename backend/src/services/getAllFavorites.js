@@ -6,6 +6,7 @@ const asFavoriteListItem = (movie) => {
     poster: movie.poster,
     title: movie.title,
     director: movie.director,
+    inFavorites: movie.inFavorites,
   };
 };
 
