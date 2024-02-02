@@ -9,8 +9,7 @@ import EditMovieButton from "../../components/buttons/EditMovieButton";
 const MovieDetails = () => {
   const { state } = useLocation();
   const { id } = useParams();
-  const { movies, setMovies, setFavoriteMovies, isInFavorites } =
-    useContext(MovieContext);
+  const { movies, setMovies, setFavoriteMovies } = useContext(MovieContext);
   const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
