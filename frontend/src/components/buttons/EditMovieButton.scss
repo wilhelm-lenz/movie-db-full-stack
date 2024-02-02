@@ -1,0 +1,14 @@
+@use "../../scss/variables";
+
+.btn-edit-movie {
+  display: flex;
+  align-items: center;
+  font-family: variables.$highlight-text-font-family-700;
+  font-size: 2rem;
+  color: variables.$accent-color;
+  background-color: transparent;
+  border: 1px solid variables.$accent-color;
+  padding: 0.4rem 2.4rem;
+  position: relative;
+  border-radius: 5rem;
+}

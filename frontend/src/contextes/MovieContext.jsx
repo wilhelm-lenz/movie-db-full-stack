@@ -5,8 +5,19 @@ const MovieContext = createContext();
 
 const MovieContextProvider = ({ children }) => {
   const [movies, setMovies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isInFavorites, setIsInFavorites] = useState(false);
   return (
-    <MovieContext.Provider value={{ movies, setMovies }}>
+    <MovieContext.Provider
+      value={{
+        movies,
+        setMovies,
+        searchTerm,
+        setSearchTerm,
+        isInFavorites,
+        setIsInFavorites,
+      }}
+    >
       {children}
     </MovieContext.Provider>
   );

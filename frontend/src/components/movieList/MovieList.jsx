@@ -4,7 +4,7 @@ import { useContext, useEffect } from "react";
 import { MovieContext } from "../../contextes/MovieContext";
 
 const MovieList = () => {
-  const { movies, setMovies } = useContext(MovieContext);
+  const { movies, setMovies, searchTerm } = useContext(MovieContext);
 
   const getAllMovies = async () => {
     const res = await fetch(`http://localhost:8000/api/v1/movies`);
@@ -15,6 +15,10 @@ const MovieList = () => {
     else setMovies(data.movies);
   };
 
+  const updatedMovies = movies.map((movie) =>
+    movie.title.includes(searchTerm) ? movie : movies
+  );
+
   useEffect(() => {
     getAllMovies();
   }, []);
@@ -23,8 +27,8 @@ const MovieList = () => {
     <section className="section-all-movies container">
       <h2 className="heading-secondary">All Movies</h2>
       <ul className="movie-list">
-        {movies?.map((movie) => (
-          <MovieListItem key={movie._id} movie={movie} />
+        {updatedMovies.map((movie, index) => (
+          <MovieListItem key={index} movie={movie} />
         ))}
       </ul>
     </section>

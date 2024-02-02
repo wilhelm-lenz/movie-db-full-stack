@@ -11,7 +11,9 @@ const Nav = () => {
           <Link to="/" className="logo">
             MMDb
           </Link>
-          <Star className="star-icon" />
+          <Link to="/favorites">
+            <Star className="star-icon" />
+          </Link>
         </div>
         <Search className="search" />
         <Link to="/createMovie" className="nav-link">

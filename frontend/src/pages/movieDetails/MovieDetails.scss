@@ -1,0 +1,69 @@
+@use "../../scss/variables";
+
+.section-movie-details {
+  padding-top: 29rem;
+
+  .year-and-director {
+    color: variables.$text-color;
+    font-family: variables.$sub-text-font-family-300;
+    font-size: 3rem;
+  }
+
+  .btns-wrapper {
+    margin-block: 6rem 2rem;
+    display: flex;
+    column-gap: 4rem;
+  }
+
+  .movie-details-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 5rem;
+    align-items: start;
+
+    .movie-details-left-side {
+      display: flex;
+      flex-direction: column;
+
+      .movie-details-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .movie-details-rating-and-duration-wrapper {
+        margin-top: 3rem;
+        color: variables.$text-color;
+        font-family: variables.$normal-text-font-family-500;
+        font-size: 3rem;
+        .movie-details-rating {
+          margin-right: 6.9rem;
+        }
+
+        .movie-details-duration {
+        }
+      }
+    }
+
+    .movie-details-right-side {
+      margin-top: 0.8rem;
+      .movie-details-genre {
+        display: inline-block;
+        background-color: variables.$accent-color;
+        color: variables.$text-color;
+        font-family: variables.$normal-text-font-family-500;
+        margin-right: 2rem;
+        font-size: 2rem;
+        padding: 0.8rem 2.2rem;
+        border-radius: 5rem;
+        margin-bottom: 2.9rem;
+      }
+
+      .movie-details-description {
+        margin-top: 0.8rem;
+        color: variables.$text-color;
+        font-size: 2.5rem;
+        line-height: 1.5;
+      }
+    }
+  }
+}

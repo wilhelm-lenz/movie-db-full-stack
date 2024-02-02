@@ -1,0 +1,23 @@
+@use "../../scss/variables";
+
+.favorite-btn {
+  display: flex;
+  align-items: center;
+  font-family: variables.$highlight-text-font-family-700;
+  font-size: 2rem;
+  color: variables.$add-and-romove-button-color;
+  background-color: transparent;
+  border: 1px solid variables.$add-and-romove-button-color;
+  padding: 0.4rem 3.6rem 0.4rem 7rem;
+  position: relative;
+  border-radius: 5rem;
+
+  .btn-add-remove-from-favorites {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+}
