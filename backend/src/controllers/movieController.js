@@ -21,7 +21,19 @@ exports.getAllMoviesCtrl = async (_, res) => {
 exports.createMovieCtrl = async (req, res) => {
   try {
     const movieInfo = req.body;
-    const movies = await MovieService.addMovie(movieInfo);
+
+    const newMovieInfo = {
+      title: movieInfo.title,
+      year: parseInt(movieInfo.year),
+      director: movieInfo.director,
+      genres: movieInfo.genres.split(", ").map((genre) => genre.trim()), // Angenommen, Genres kommen als komma-getrennter String
+      tomato: { rating: parseFloat(movieInfo.tomato.rating) || null }, // Stelle sicher, dass rating eine Zahl ist oder null, wenn nicht definiert
+      poster: movieInfo.posterUrl,
+      description: movieInfo.plot,
+      runtime: parseInt(movieInfo.runtime),
+    };
+
+    const movies = await MovieService.addMovie(newMovieInfo);
     const requestedAt = req.requestTime;
     res.status(OK).json({
       status: "success",

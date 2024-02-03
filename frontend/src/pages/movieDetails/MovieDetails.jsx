@@ -5,11 +5,13 @@ import "./MovieDetails.scss";
 import { MovieContext } from "../../contextes/MovieContext";
 import FavoritesButton from "../../components/buttons/FavoritesButton";
 import EditMovieButton from "../../components/buttons/EditMovieButton";
+import AddMovieForm from "../../components/addMovieForm/AddMovieForm";
 
 const MovieDetails = () => {
   const { state } = useLocation();
   const { id } = useParams();
-  const { movies, setMovies, setFavoriteMovies } = useContext(MovieContext);
+  const { movies, setMovies, setFavoriteMovies, isOpenForm } =
+    useContext(MovieContext);
   const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
@@ -96,6 +98,7 @@ const MovieDetails = () => {
             </div>
           </article>
         </section>
+        {isOpenForm ? <AddMovieForm /> : null}
       </Main>
     </>
   );

@@ -8,6 +8,7 @@ const MovieContextProvider = ({ children }) => {
   const [favoriteMovies, setFavoriteMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [isInFavorites, setIsInFavorites] = useState(false);
+  const [isOpenForm, setIsOpenForm] = useState(false);
   return (
     <MovieContext.Provider
       value={{
@@ -19,6 +20,8 @@ const MovieContextProvider = ({ children }) => {
         setIsInFavorites,
         favoriteMovies,
         setFavoriteMovies,
+        isOpenForm,
+        setIsOpenForm,
       }}
     >
       {children}

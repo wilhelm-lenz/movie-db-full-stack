@@ -1,11 +1,14 @@
+import AddMovieForm from "../../components/addMovieForm/AddMovieForm";
 import Main from "../../components/main/Main";
 import "./CreateMovie.scss";
+import Hero from "../../components/hero/Hero";
 
 const CreateMovie = () => {
   return (
     <>
       <Main>
-        <h2>CreateMovie</h2>
+        <Hero />
+        <AddMovieForm />
       </Main>
     </>
   );

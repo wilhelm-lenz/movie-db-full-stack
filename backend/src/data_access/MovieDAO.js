@@ -13,6 +13,7 @@ exports.insertOne = async (movieNewInfo) => {
   const { acknowledged, insertedId } = await db
     .collection("movieDetails")
     .insertOne(movieNewInfo);
+
   if (acknowledged) return makeMovie({ ...movieNewInfo, _id: insertedId });
   else return null;
 };
