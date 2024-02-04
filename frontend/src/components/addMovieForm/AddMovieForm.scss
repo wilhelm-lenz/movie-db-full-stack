@@ -1,0 +1,60 @@
+@use "../../scss/variables";
+
+.section-add-and-update-movie {
+  margin-top: 16rem;
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 2.2rem;
+    margin: 0 auto;
+    max-width: 50%;
+
+    ::placeholder {
+      color: variables.$accent-color;
+    }
+
+    label {
+      width: 100%;
+    }
+
+    input {
+      width: 100%;
+      border-radius: 5rem;
+      border: 3px solid variables.$accent-color;
+      background-color: transparent;
+      padding-block: 0.8rem;
+      padding-left: 1.6rem;
+      font-size: 1.8rem;
+      color: variables.$accent-color;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    textarea {
+      width: 100%;
+      border-radius: 2rem;
+      border: 3px solid variables.$accent-color;
+      background-color: transparent;
+      padding: 1.6rem;
+      font-size: 1.8rem;
+      max-width: 100%;
+      min-width: 100%;
+      max-height: 20rem;
+      max-width: 100%;
+      overflow-y: auto;
+      color: variables.$accent-color;
+    }
+
+    textarea::-webkit-scrollbar {
+      display: none;
+    }
+
+    .submit-btn {
+      background-color: variables.$accent-color;
+      color: variables.$text-color;
+    }
+  }
+}

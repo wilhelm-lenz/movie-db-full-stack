@@ -26,7 +26,6 @@ exports.createFavoriteCtrl = async (req, res) => {
 
     res.status(OK).json({
       status: "success",
-      result: favoriteMovies.length,
       data: { favoriteMovies },
     });
   } catch (error) {

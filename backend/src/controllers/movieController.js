@@ -33,11 +33,9 @@ exports.createMovieCtrl = async (req, res) => {
     };
 
     const movies = await MovieService.addMovie(newMovieInfo);
-    const requestedAt = req.requestTime;
+
     res.status(OK).json({
       status: "success",
-      requestedAt,
-      result: movies.length,
       data: { movies },
     });
   } catch (error) {
@@ -54,7 +52,6 @@ exports.updateMovieCtrl = async (req, res) => {
   try {
     const movieId = await req.params.id;
     const movieInfo = await req.body;
-    const requestedAt = await req.requestTime;
 
     const updateData = {
       title: movieInfo.title,
@@ -75,7 +72,6 @@ exports.updateMovieCtrl = async (req, res) => {
 
     res.status(OK).json({
       status: "success",
-      requestedAt,
       data: { movies: updateMoviesArray },
     });
   } catch (error) {
@@ -91,12 +87,10 @@ exports.updateMovieCtrl = async (req, res) => {
 exports.deleteMovieCtrl = (req, res) => {
   try {
     const movieId = req.params.id;
-    const requestedAt = req.requestTime;
-    const moviesWithoutDeleted = MovieService.deleteMovie(movieId);
+    const movieDeleted = MovieService.deleteMovie(movieId);
     res.status(OK).json({
       status: "success",
-      requestedAt,
-      data: null,
+      data: movieDeleted,
     });
   } catch (error) {
     console.log(error);

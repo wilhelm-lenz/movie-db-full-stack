@@ -25,7 +25,7 @@ const AddMovieForm = ({ movie }) => {
       setGenres(movie.genres.map((genre) => genre).join(", ") || "");
       setRating(movie.tomato.rating.toString() || "");
       setPosterURL(movie.poster || "");
-      setDescription(movie.description || "");
+      setDescription(movie.plot || "");
       setRuntime(movie.runtime.toString() || "");
     }
   }, []);
@@ -67,6 +67,14 @@ const AddMovieForm = ({ movie }) => {
     } catch (err) {
       console.log(err);
     }
+    setTitle("");
+    setYear("");
+    setDirector("");
+    setGenres("");
+    setRating("");
+    setPosterURL("");
+    setDescription("");
+    setRuntime("");
   };
 
   const updatedMovie = async () => {
@@ -104,7 +112,7 @@ const AddMovieForm = ({ movie }) => {
   };
 
   return (
-    <section className="section-add-movie">
+    <section className="section-add-and-update-movie container">
       {location !== "movieDetails" ? (
         <h2 className="heading-secondary">Add your own movies</h2>
       ) : null}
@@ -192,6 +200,7 @@ const AddMovieForm = ({ movie }) => {
         <input
           type="button"
           value="Submit"
+          className="submit-btn"
           onClick={location === "movieDetails" ? updatedMovie : createMovie}
         />
       </form>
