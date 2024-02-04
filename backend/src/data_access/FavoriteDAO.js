@@ -17,6 +17,27 @@ exports.insertOne = async (movieNewInfo) => {
   else return null;
 };
 
+exports.updateById = async (movieId, updateData) => {
+  const db = await getDb();
+
+  const movie = await db
+    .collection("favoriteMovies")
+    .findOne({ _id: ObjectId.createFromHexString(movieId) });
+
+  if (!movie) throw new Error("Movie with this _id dosen't exist");
+
+  const { acknowledged } = await db
+    .collection("favoriteMovies")
+    .replaceOne(
+      { _id: ObjectId.createFromHexString(movieId) },
+      { ...updateData, _id: ObjectId.createFromHexString(movieId) }
+    );
+
+  if (!acknowledged) return null;
+
+  return makeMovie(movie);
+};
+
 exports.deletById = async (movieId) => {
   const db = await getDb();
 

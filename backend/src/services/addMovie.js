@@ -1,5 +1,4 @@
 const { MovieDAO } = require("../data_access");
-const { makeMovie } = require("../domain/Movies");
 
 const asFavoriteListItem = (movie) => {
   return {

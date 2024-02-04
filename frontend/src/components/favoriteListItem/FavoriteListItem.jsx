@@ -11,7 +11,7 @@ const FavoriteListItem = ({ movie }) => {
   if (!movie) {
     return;
   }
-  console.log(movie);
+
   const handleImageLoaded = () => {
     setImageLoaded(true); // Setzt den Status, wenn das Bild erfolgreich geladen wurde
   };

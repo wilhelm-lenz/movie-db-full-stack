@@ -1,20 +1,34 @@
-import { useContext, useState } from "react";
+/* eslint-disable react/prop-types */
+import { useContext, useEffect, useState } from "react";
 import "./AddMovieForm.scss";
 import { MovieContext } from "../../contextes/MovieContext";
 import { useLocation } from "react-router-dom";
 
-const AddMovieForm = () => {
+const AddMovieForm = ({ movie }) => {
   const location = useLocation().pathname.split("/").slice(1, 2).join("");
 
   const { setMovies } = useContext(MovieContext);
   const [title, setTitle] = useState("");
-  const [year, setAYear] = useState("");
+  const [year, setYear] = useState("");
   const [director, setDirector] = useState("");
   const [genres, setGenres] = useState([]);
   const [rating, setRating] = useState("");
   const [posterUrl, setPosterURL] = useState("");
   const [description, setDescription] = useState("");
   const [runtime, setRuntime] = useState("");
+
+  useEffect(() => {
+    if (location === "movieDetails" && movie) {
+      setTitle(movie.title || "");
+      setYear(movie.year.toString() || "");
+      setDirector(movie?.director || "");
+      setGenres(movie.genres.map((genre) => genre).join(", ") || "");
+      setRating(movie.tomato.rating.toString() || "");
+      setPosterURL(movie.poster || "");
+      setDescription(movie.description || "");
+      setRuntime(movie.runtime.toString() || "");
+    }
+  }, [movie, location]);
 
   const createMovie = async () => {
     try {
@@ -34,7 +48,7 @@ const AddMovieForm = () => {
       });
       const result = await res.json();
       const { success, data, error } = result;
-      console.log(data.movies);
+
       if (!success) throw error;
       else
         setMovies([
@@ -46,10 +60,44 @@ const AddMovieForm = () => {
             genres,
             tomato: { rating },
             posterUrl,
-            description,
+            plot: description,
             runtime,
           },
         ]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const updatedMovie = async () => {
+    try {
+      const res = await fetch(
+        `http://localhost:8000/api/v1/movies/${movie._id}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            title,
+            year,
+            director,
+            genres,
+            tomato: { rating },
+            posterUrl,
+            plot: description,
+            runtime,
+          }),
+        }
+      );
+      const result = await res.json();
+      if (result.success) {
+        setMovies((prevMovies) =>
+          prevMovies.map((m) =>
+            m._id === movie._id ? { ...result.data, _id: movie._id } : m
+          )
+        );
+      } else {
+        throw result.error;
+      }
     } catch (err) {
       console.log(err);
     }
@@ -73,12 +121,12 @@ const AddMovieForm = () => {
         </label>
         <label htmlFor="year">
           <input
-            type="text"
+            type="number"
             name="year"
             id="year"
             placeholder="Year"
             value={year}
-            onChange={(e) => setAYear(e.target.value)}
+            onChange={(e) => setYear(e.target.value)}
           />
         </label>
         <label htmlFor="director">
@@ -87,6 +135,7 @@ const AddMovieForm = () => {
             name="director"
             id="director"
             placeholder="Director"
+            value={director}
             onChange={(e) => setDirector(e.target.value)}
           />
         </label>
@@ -102,7 +151,7 @@ const AddMovieForm = () => {
         </label>
         <label htmlFor="rating">
           <input
-            type="text"
+            type="number"
             name="rating"
             id="rating"
             placeholder="Rate"
@@ -140,7 +189,11 @@ const AddMovieForm = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
-        <input type="button" value="Submit" onClick={createMovie} />
+        <input
+          type="button"
+          value="Submit"
+          onClick={location === "movieDetails" ? updatedMovie : createMovie}
+        />
       </form>
     </section>
   );

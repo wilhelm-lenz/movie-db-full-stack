@@ -38,7 +38,10 @@ exports.updateById = async (movieId, updateData) => {
 
   const { acknowledged } = await db
     .collection("movieDetails")
-    .replaceOne({ _id: ObjectId.createFromHexString(movieId) }, updateData);
+    .replaceOne(
+      { _id: ObjectId.createFromHexString(movieId) },
+      { ...updateData, _id: ObjectId.createFromHexString(movieId) }
+    );
 
   if (!acknowledged) return null;
 

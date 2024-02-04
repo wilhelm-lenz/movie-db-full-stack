@@ -20,7 +20,6 @@ exports.getAllFavoritesCtrl = async (_, res) => {
 exports.createFavoriteCtrl = async (req, res) => {
   try {
     const favoriteMovieId = await req.params.id;
-    console.log(favoriteMovieId);
     // const movieInfo = req.body;
     const movieInfo = await MovieService.getMovie(favoriteMovieId);
     const favoriteMovies = await MovieService.addToFavorites(movieInfo);

@@ -21,7 +21,6 @@ exports.getAllMoviesCtrl = async (_, res) => {
 exports.createMovieCtrl = async (req, res) => {
   try {
     const movieInfo = req.body;
-
     const newMovieInfo = {
       title: movieInfo.title,
       year: parseInt(movieInfo.year),
@@ -54,24 +53,25 @@ exports.createMovieCtrl = async (req, res) => {
 exports.updateMovieCtrl = async (req, res) => {
   try {
     const movieId = await req.params.id;
-    const movieData = await req.body;
+    const movieInfo = await req.body;
     const requestedAt = await req.requestTime;
 
     const updateData = {
-      title: movieData.title,
-      year: Number(movieData.year),
-      director: movieData.director,
-      genres: movieData.genres,
-      tomato: { rating: Number(movieData.tomato.rating) },
-      poster: movieData.poster,
-      plot: movieData.plot,
-      runtime: Number(movieData.runtime),
+      title: movieInfo.title,
+      year: parseInt(movieInfo.year),
+      director: movieInfo.director,
+      genres: movieInfo.genres.split(",").map((genre) => genre.trim()), // Angenommen, Genres kommen als komma-getrennter String
+      tomato: { rating: parseFloat(movieInfo.tomato.rating) || null }, // Stelle sicher, dass rating eine Zahl ist oder null, wenn nicht definiert
+      poster: movieInfo.posterUrl,
+      description: movieInfo.plot,
+      runtime: parseInt(movieInfo.runtime),
     };
 
     const updateMoviesArray = await MovieService.updateMovie(
       movieId,
       updateData
     );
+    await MovieService.updateFavorites(movieId, updateData);
 
     res.status(OK).json({
       status: "success",

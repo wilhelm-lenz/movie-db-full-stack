@@ -8,7 +8,6 @@ const EditMovieButton = ({ btnText }) => {
 
   const handleFormOpenClose = () => {
     setIsOpenForm(!isOpenForm);
-    console.log(isOpenForm);
   };
 
   return (

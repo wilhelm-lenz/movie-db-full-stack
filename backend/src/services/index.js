@@ -6,6 +6,7 @@ const { getAllFavorites } = require("./getAllFavorites");
 const { getAllMovies } = require("./getAllMovies");
 const { getMovie } = require("./getMovie");
 const { updateMovie } = require("./updateMovie");
+const { updateFavorites } = require("./updateFavorites");
 
 const MovieService = {
   getAllMovies,
@@ -16,6 +17,7 @@ const MovieService = {
   addToFavorites,
   getAllFavorites,
   getMovie,
+  updateFavorites,
 };
 
 module.exports = {
