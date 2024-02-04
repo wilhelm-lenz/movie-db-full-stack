@@ -1,6 +1,6 @@
 const { ObjectId } = require("mongodb");
 const { getDb } = require("../data_access/getDb");
-const { makeMovie } = require("../domain/Movies");
+const { makeFavoriteMovie } = require("../domain/Favorites");
 
 exports.findAllFavoriteMovies = async () => {
   const db = await getDb();
@@ -10,10 +10,10 @@ exports.findAllFavoriteMovies = async () => {
 
 exports.insertOne = async (movieNewInfo) => {
   const db = await getDb();
-  const { acknowledged, insertedId } = await db
+  const { acknowledged } = await db
     .collection("favoriteMovies")
     .insertOne(movieNewInfo);
-  if (acknowledged) return makeMovie({ ...movieNewInfo });
+  if (acknowledged) return makeFavoriteMovie({ ...movieNewInfo });
   else return null;
 };
 
@@ -35,7 +35,7 @@ exports.updateById = async (movieId, updateData) => {
 
   if (!acknowledged) return null;
 
-  return makeMovie(movie);
+  return makeFavoriteMovie(movie);
 };
 
 exports.deletById = async (movieId) => {
@@ -53,5 +53,5 @@ exports.deletById = async (movieId) => {
 
   if (!acknowledged) return null;
 
-  return makeMovie(movie);
+  return makeFavoriteMovie(movie);
 };

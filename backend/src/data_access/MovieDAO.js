@@ -24,7 +24,7 @@ exports.findById = async (movieId) => {
     .collection("movieDetails")
     .findOne({ _id: ObjectId.createFromHexString(movieId) });
   if (!movie) throw new Error("Movie with this _id dosen't exist");
-  return makeMovie(movie);
+  return movie;
 };
 
 exports.updateById = async (movieId, updateData) => {

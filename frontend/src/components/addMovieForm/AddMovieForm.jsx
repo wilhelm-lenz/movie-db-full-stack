@@ -28,7 +28,7 @@ const AddMovieForm = ({ movie }) => {
       setDescription(movie.description || "");
       setRuntime(movie.runtime.toString() || "");
     }
-  }, [movie, location]);
+  }, []);
 
   const createMovie = async () => {
     try {

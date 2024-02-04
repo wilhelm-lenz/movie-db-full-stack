@@ -43,6 +43,7 @@ const MovieListItem = ({ movie }) => {
           src={posterURL || defaultPoster}
           alt={`image`}
           className="movie-list-item-img"
+          loading="lazy"
           onLoad={handleImageLoaded} // Event-Handler für erfolgreiches Laden
           onError={handleImageError} // Event-Handler für Fehler beim Laden
         />

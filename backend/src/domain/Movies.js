@@ -17,10 +17,6 @@ exports.makeMovie = ({
   awards,
   type,
 }) => {
-  if (!genres || !Array.isArray(genres) || genres.length === 0) {
-    throw new Error("At least one genre required");
-  }
-
   console.log("Title: ", typeof title);
   if (
     typeof title === "undefined" ||
@@ -46,14 +42,6 @@ exports.makeMovie = ({
   if (!Array.isArray(genres) || genres.length === 0) {
     throw new Error("At least one genre required");
   }
-
-  // // // const tomatoRating =
-  // // //   tomato && typeof tomato.rating === "number" ? tomato.rating : null;
-
-  // // // console.log("tomato.rating: ", typeof tomato.rating);
-  // // // if (tomatoRating === null) {
-  // // //   throw new Error("Rating Value is invalid!");
-  // // // }
 
   if (
     (tomato && typeof tomato.rating === "undefined") ||

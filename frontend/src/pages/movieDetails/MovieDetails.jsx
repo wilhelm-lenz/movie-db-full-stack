@@ -16,21 +16,29 @@ const MovieDetails = () => {
 
   useEffect(() => {
     const getAllMovies = async () => {
-      const res = await fetch(`http://localhost:8000/api/v1/movies`);
-      const dataObj = await res.json();
-      const { status, data, error } = dataObj;
-      if (status !== "success") console.log(error);
-      else setMovies(data.movies);
+      try {
+        const res = await fetch(`http://localhost:8000/api/v1/movies`);
+        const dataObj = await res.json();
+        const { status, data, error } = dataObj;
+        if (status !== "success") console.log(error);
+        else setMovies(data.movies);
+      } catch (error) {
+        console.error("Error when retrieving movies:", error);
+      }
     };
 
     getAllMovies();
 
     const getAllFavoriteMovies = async () => {
-      const res = await fetch(`http://localhost:8000/api/v1/favorites`);
-      const dataObj = await res.json();
-      const { status, data, error } = dataObj;
-      if (status !== "success") console.log(error);
-      else setFavoriteMovies(data.favoriteMovies);
+      try {
+        const res = await fetch(`http://localhost:8000/api/v1/favorites`);
+        const dataObj = await res.json();
+        const { status, data, error } = dataObj;
+        if (status !== "success") console.log(error);
+        else setFavoriteMovies(data.favoriteMovies);
+      } catch (error) {
+        console.error("Error when retrieving favorite movies:", error);
+      }
     };
 
     getAllFavoriteMovies();

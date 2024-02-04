@@ -10,41 +10,52 @@ const FavoritsButton = ({ btnText, movieId }) => {
     useContext(MovieContext);
 
   useEffect(() => {
-    const isFav = favoriteMovies.find((movie) => movie._id === movieId);
+    const isFav = favoriteMovies.some((movie) => movie._id === movieId);
     setIsInFavorites(isFav);
-  }, [favoriteMovies, movieId]);
+    console.log(isFav);
+  }, [movieId]);
 
   const handleAddToFavoriteClick = async () => {
-    const res = await fetch(
-      `http://localhost:8000/api/v1/favorites/${movieId}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ movieId }),
-      }
-    );
-    const dataObj = await res.json();
-    const { status, data, error } = dataObj;
-    if (status !== "success") console.log(error);
-    else setFavoriteMovies([...favoriteMovies, data.favoriteMovies]);
+    try {
+      const res = await fetch(
+        `http://localhost:8000/api/v1/favorites/${movieId}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ movieId }),
+        }
+      );
+      const dataObj = await res.json();
+      const { status, data, error } = dataObj;
+      if (status !== "success") console.log(error);
+      setFavoriteMovies([...favoriteMovies, data.favoriteMovies]);
 
-    setIsInFavorites(!isInFavorites);
+      setIsInFavorites(true);
+    } catch (error) {
+      console.log("Error when retrieving favorite film:", error);
+    }
   };
 
   const handleAddDeleteFromFavoriteClick = async () => {
-    const res = await fetch(
-      `http://localhost:8000/api/v1/favorites/${movieId}`,
-      {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ movieId }),
-      }
-    );
-    const dataObj = await res.json();
-    const { status, error } = dataObj;
-    if (status !== "success") console.log(error);
-    setFavoriteMovies(favoriteMovies.filter((movie) => movie._id !== movieId));
-    setIsInFavorites(!isInFavorites);
+    try {
+      const res = await fetch(
+        `http://localhost:8000/api/v1/favorites/${movieId}`,
+        {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ movieId }),
+        }
+      );
+      const dataObj = await res.json();
+      const { status, error } = dataObj;
+      if (status !== "success") console.log(error);
+      setFavoriteMovies(
+        favoriteMovies.filter((movie) => movie._id !== movieId)
+      );
+      setIsInFavorites(false);
+    } catch (error) {
+      console.log("Error when retrieving favorite film:", error);
+    }
   };
 
   return (

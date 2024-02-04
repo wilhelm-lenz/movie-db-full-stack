@@ -6,7 +6,6 @@ exports.getAllFavoritesCtrl = async (_, res) => {
     const favoriteMovies = await MovieService.getAllFavorites();
     res.status(OK).json({
       status: "success",
-      result: favoriteMovies.length,
       data: { favoriteMovies },
     });
   } catch (error) {
@@ -20,13 +19,13 @@ exports.getAllFavoritesCtrl = async (_, res) => {
 exports.createFavoriteCtrl = async (req, res) => {
   try {
     const favoriteMovieId = await req.params.id;
-    // const movieInfo = req.body;
+
     const movieInfo = await MovieService.getMovie(favoriteMovieId);
+
     const favoriteMovies = await MovieService.addToFavorites(movieInfo);
-    const requestedAt = req.requestTime;
+
     res.status(OK).json({
       status: "success",
-      requestedAt,
       result: favoriteMovies.length,
       data: { favoriteMovies },
     });
@@ -43,12 +42,10 @@ exports.createFavoriteCtrl = async (req, res) => {
 exports.deleteFavoriteMovieCtrl = (req, res) => {
   try {
     const movieId = req.params.id;
-    const requestedAt = req.requestTime;
-    MovieService.deleteFromFavorites(movieId);
+    const deletedMovie = MovieService.deleteFromFavorites(movieId);
     res.status(OK).json({
       status: "success",
-      requestedAt,
-      data: null,
+      data: deletedMovie,
     });
   } catch (error) {
     console.log(error);
