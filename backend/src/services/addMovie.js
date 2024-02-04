@@ -6,7 +6,7 @@ const asFavoriteListItem = (movie) => {
     poster: movie.poster,
     title: movie.title,
     director: movie.director,
-    plot: movie.description,
+    plot: movie.plot,
     year: movie.year,
     genres: movie.genres,
     tomato: movie.tomato,
@@ -15,6 +15,8 @@ const asFavoriteListItem = (movie) => {
 };
 
 exports.addMovie = async (movieInfo) => {
+  console.log(movieInfo);
   const movie = await MovieDAO.insertOne(movieInfo);
+  console.log(asFavoriteListItem(movie));
   return asFavoriteListItem(movie);
 };

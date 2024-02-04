@@ -9,7 +9,7 @@ const asMovieListItem = (movie) => {
     year: movie.year,
     genres: movie.genres,
     tomato: movie.tomato,
-    description: movie.plot,
+    plot: movie.plot,
     runtime: movie.runtime,
   };
 };

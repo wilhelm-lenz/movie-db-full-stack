@@ -5,7 +5,7 @@ const { makeMovie } = require("../domain/Movies");
 exports.findAllMovies = async () => {
   const db = await getDb();
   const moviesArray = await db.collection("movieDetails").find().toArray();
-  return moviesArray.map((movie) => makeMovie(movie));
+  return moviesArray;
 };
 
 exports.insertOne = async (movieNewInfo) => {

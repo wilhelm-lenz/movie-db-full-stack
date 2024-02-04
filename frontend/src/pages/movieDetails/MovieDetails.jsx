@@ -49,7 +49,7 @@ const MovieDetails = () => {
     return <div>Film nicht gefunden.</div>;
   }
 
-  const { description, director, genres, runtime, title, year, tomato } = movie;
+  const { plot, director, genres, runtime, title, year, tomato } = movie;
 
   return (
     <>
@@ -94,7 +94,7 @@ const MovieDetails = () => {
                 ) : null
               )}
               <h2 className="heading-secondary">Story</h2>
-              <p className="movie-details-description">{description}</p>
+              <p className="movie-details-description">{plot}</p>
             </div>
           </article>
         </section>

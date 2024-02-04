@@ -25,10 +25,10 @@ exports.createMovieCtrl = async (req, res) => {
       title: movieInfo.title,
       year: parseInt(movieInfo.year),
       director: movieInfo.director,
-      genres: movieInfo.genres.split(", ").map((genre) => genre.trim()), // Angenommen, Genres kommen als komma-getrennter String
-      tomato: { rating: parseFloat(movieInfo.tomato.rating) || null }, // Stelle sicher, dass rating eine Zahl ist oder null, wenn nicht definiert
+      genres: movieInfo.genres.split(", ").map((genre) => genre.trim()),
+      tomato: { rating: parseFloat(movieInfo.tomato.rating) || null },
       poster: movieInfo.posterUrl,
-      description: movieInfo.plot,
+      plot: movieInfo.plot,
       runtime: parseInt(movieInfo.runtime),
     };
 
@@ -60,8 +60,8 @@ exports.updateMovieCtrl = async (req, res) => {
       title: movieInfo.title,
       year: parseInt(movieInfo.year),
       director: movieInfo.director,
-      genres: movieInfo.genres.split(",").map((genre) => genre.trim()), // Angenommen, Genres kommen als komma-getrennter String
-      tomato: { rating: parseFloat(movieInfo.tomato.rating) || null }, // Stelle sicher, dass rating eine Zahl ist oder null, wenn nicht definiert
+      genres: movieInfo.genres.split(",").map((genre) => genre.trim()),
+      tomato: { rating: parseFloat(movieInfo.tomato.rating) || null },
       poster: movieInfo.posterUrl,
       description: movieInfo.plot,
       runtime: parseInt(movieInfo.runtime),
