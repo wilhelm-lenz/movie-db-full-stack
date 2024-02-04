@@ -14,7 +14,6 @@ const asMovieListItem = (movie) => {
 };
 
 exports.updateMovie = async (movieId, updateData) => {
-  const newUpdateData = asMovieListItem(updateData);
-  const updatedMovie = await MovieDAO.updateById(movieId, newUpdateData);
-  return updatedMovie;
+  const updatedMovie = await MovieDAO.updateById(movieId, updateData);
+  return asMovieListItem(updatedMovie);
 };

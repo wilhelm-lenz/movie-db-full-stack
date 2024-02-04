@@ -13,16 +13,6 @@ const MovieDetails = () => {
   const { movies, setMovies, setFavoriteMovies, isOpenForm } =
     useContext(MovieContext);
   const [imageLoaded, setImageLoaded] = useState(false);
-  // const location = pathname.split("/").slice(1, 2).join();
-
-  // const [title, setTitle] = useState("");
-  // const [year, setAYear] = useState("");
-  // const [director, setDirector] = useState("");
-  // const [genres, setGenres] = useState([]);
-  // const [rating, setRating] = useState("");
-  // const [posterUrl, setPosterURL] = useState("");
-  // const [description, setDescription] = useState("");
-  // const [runtime, setRuntime] = useState("");
 
   useEffect(() => {
     const getAllMovies = async () => {

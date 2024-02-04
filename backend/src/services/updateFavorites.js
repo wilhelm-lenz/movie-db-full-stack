@@ -10,8 +10,6 @@ const asFavoriteListItem = (movie) => {
 };
 
 exports.updateFavorites = async (movieId, updateData) => {
-  console.log("!!!!!!!!!!!!!!!", updateData);
-  const newUpdateData = asFavoriteListItem(updateData);
-  const updatedMovie = await FavoriteDAO.updateById(movieId, newUpdateData);
-  return updatedMovie;
+  const updatedMovie = await FavoriteDAO.updateById(movieId, updateData);
+  return asFavoriteListItem(updatedMovie);
 };

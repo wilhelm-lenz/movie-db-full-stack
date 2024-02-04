@@ -11,7 +11,6 @@ const asFavoriteListItem = (movie) => {
 };
 
 exports.addToFavorites = async (movieInfo) => {
-  const newMovieInfo = asFavoriteListItem(movieInfo);
-  const insertResult = await FavoriteDAO.insertOne(newMovieInfo);
-  return insertResult;
+  const newMovieInfo = await FavoriteDAO.insertOne(movieInfo);
+  return asFavoriteListItem(newMovieInfo);
 };
