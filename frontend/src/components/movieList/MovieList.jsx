@@ -15,9 +15,11 @@ const MovieList = () => {
     else setMovies(data.movies);
   };
 
-  const updatedMovies = movies.map((movie) =>
-    movie.title.includes(searchTerm) ? movie : movies
-  );
+  const updatedMovies = searchTerm
+    ? movies.filter((movie) =>
+        movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : movies;
 
   useEffect(() => {
     getAllMovies();
@@ -27,8 +29,8 @@ const MovieList = () => {
     <section className="section-all-movies container">
       <h2 className="heading-secondary">All Movies</h2>
       <ul className="movie-list">
-        {updatedMovies.map((movie, index) => (
-          <MovieListItem key={index} movie={movie} />
+        {updatedMovies.map((movie) => (
+          <MovieListItem key={movie._id} movie={movie} />
         ))}
       </ul>
     </section>

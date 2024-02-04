@@ -27,8 +27,8 @@ const FavoriteList = () => {
     <section className="section-favorite-movies container">
       <h2 className="heading-secondary">My favorites</h2>
       <ul className="favorite-movie-list">
-        {favoriteMovies?.map((movie, index) => (
-          <FavoriteListItem key={index} movie={movie} />
+        {favoriteMovies?.map((movie) => (
+          <FavoriteListItem key={favoriteMovies._id} movie={movie} />
         ))}
       </ul>
     </section>
