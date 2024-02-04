@@ -63,7 +63,7 @@ exports.updateMovieCtrl = async (req, res) => {
       genres: movieInfo.genres.split(",").map((genre) => genre.trim()),
       tomato: { rating: parseFloat(movieInfo.tomato.rating) || null },
       poster: movieInfo.posterUrl,
-      description: movieInfo.plot,
+      plot: movieInfo.plot,
       runtime: parseInt(movieInfo.runtime),
     };
 
