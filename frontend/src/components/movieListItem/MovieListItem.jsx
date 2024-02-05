@@ -8,29 +8,34 @@ const defaultPoster = "../../../public/images/defaultPoster.jpg";
 
 const MovieListItem = ({ movie }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
+
   if (!movie) {
     return null;
   }
 
   const handleImageLoaded = () => {
-    setImageLoaded(true); // Setzt den Status, wenn das Bild erfolgreich geladen wurde
+    setImageLoaded(true);
   };
 
   const handleImageError = (e) => {
-    e.target.src = defaultPoster; // Setzt das Bild auf das Standardbild, wenn ein Fehler auftritt
+    e.target.src = defaultPoster;
   };
 
-  const posterURLArray = movie?.poster?.split(":");
-  if (posterURLArray && posterURLArray[0] !== "https") {
-    posterURLArray[0] = "https";
-  }
-  const posterURL = posterURLArray?.join(":");
+  const changeProtocolToSecure = () => {
+    const posterURLArray = movie?.poster?.split(":");
+    if (posterURLArray && posterURLArray[0] !== "https") {
+      posterURLArray[0] = "https";
+    }
+    const posterURLJoined = posterURLArray?.join(":");
+    return posterURLJoined;
+  };
+
+  const posterURL = changeProtocolToSecure();
 
   if (!posterURL) {
     return null;
   }
 
-  // const posterURL = movie?.poster ? movie.poster : defaultPoster;
   return (
     <Link
       to={`/movieDetails/${movie._id}`}
@@ -38,14 +43,13 @@ const MovieListItem = ({ movie }) => {
     >
       <li className="movie-list-item">
         {!imageLoaded && <div>Loading...</div>}
-        {/* Anzeigen eines Ladeindikators, solange das Bild nicht geladen wurde */}
         <img
           src={posterURL || defaultPoster}
           alt={`image`}
           className="movie-list-item-img"
           loading="lazy"
-          onLoad={handleImageLoaded} // Event-Handler für erfolgreiches Laden
-          onError={handleImageError} // Event-Handler für Fehler beim Laden
+          onLoad={handleImageLoaded}
+          onError={handleImageError}
         />
         <span className="movie-list-item-title">{movie.title}</span>
         <span className="movie-list-item-director">{movie.director}</span>

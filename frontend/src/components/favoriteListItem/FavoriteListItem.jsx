@@ -13,24 +13,28 @@ const FavoriteListItem = ({ movie }) => {
   }
 
   const handleImageLoaded = () => {
-    setImageLoaded(true); // Setzt den Status, wenn das Bild erfolgreich geladen wurde
+    setImageLoaded(true);
   };
 
   const handleImageError = (e) => {
-    e.target.src = defaultPoster; // Setzt das Bild auf das Standardbild, wenn ein Fehler auftritt
+    e.target.src = defaultPoster;
   };
 
-  const posterURLArray = movie?.poster?.split(":");
-  if (posterURLArray && posterURLArray[0] !== "https") {
-    posterURLArray[0] = "https";
-  }
-  const posterURL = posterURLArray?.join(":");
+  const changeProtocolToSecure = () => {
+    const posterURLArray = movie?.poster?.split(":");
+    if (posterURLArray && posterURLArray[0] !== "https") {
+      posterURLArray[0] = "https";
+    }
+    const posterURLJoined = posterURLArray?.join(":");
+    return posterURLJoined;
+  };
+
+  const posterURL = changeProtocolToSecure();
 
   if (!posterURL) {
     return null;
   }
 
-  // const posterURL = movie?.poster ? movie.poster : defaultPoster;
   return (
     <>
       <li className="favorite-movie-list-item">

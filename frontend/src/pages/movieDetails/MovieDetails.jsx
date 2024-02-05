@@ -46,14 +46,15 @@ const MovieDetails = () => {
   }, [id]);
 
   const handleImageLoaded = () => {
-    setImageLoaded(true); // Setzt den Status, wenn das Bild erfolgreich geladen wurde
+    setImageLoaded(true);
   };
 
   const handleImageError = (e) => {
-    e.target.src = state.defaultPoster; // Setzt das Bild auf das Standardbild, wenn ein Fehler auftritt
+    e.target.src = state.defaultPoster;
   };
 
   const movie = movies?.find((movie) => movie._id === id);
+
   if (!movie) {
     return <div>Film nicht gefunden.</div>;
   }
