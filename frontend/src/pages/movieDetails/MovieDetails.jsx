@@ -13,11 +13,12 @@ const MovieDetails = () => {
   const { movies, setMovies, setFavoriteMovies, isOpenForm } =
     useContext(MovieContext);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const localURL = import.meta.env.VITE_BACKAND_URL;
 
   useEffect(() => {
     const getAllMovies = async () => {
       try {
-        const res = await fetch(`http://localhost:8000/api/v1/movies`);
+        const res = await fetch(`${localURL}/api/v1/movies`);
         const dataObj = await res.json();
         const { status, data, error } = dataObj;
         if (status !== "success") console.log(error);
@@ -31,7 +32,7 @@ const MovieDetails = () => {
 
     const getAllFavoriteMovies = async () => {
       try {
-        const res = await fetch(`http://localhost:8000/api/v1/favorites`);
+        const res = await fetch(`${localURL}/api/v1/favorites`);
         const dataObj = await res.json();
         const { status, data, error } = dataObj;
         if (status !== "success") console.log(error);

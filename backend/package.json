@@ -4,8 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start:dev": "nodemon server.js",
-    "start:prod": "NODE_ENV=production nodemon server.js"
+    "dev": "nodemon server.js",
+    "prod": "NODE_ENV=production nodemon server.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",

@@ -5,9 +5,10 @@ import { MovieContext } from "../../contextes/MovieContext";
 
 const MovieList = () => {
   const { movies, setMovies, searchTerm } = useContext(MovieContext);
+  const localURL = import.meta.env.VITE_BACKAND_URL;
 
   const getAllMovies = async () => {
-    const res = await fetch(`http://localhost:8000/api/v1/movies`);
+    const res = await fetch(`${localURL}/api/v1/movies`);
     const dataObj = await res.json();
     const { status, data, error } = dataObj;
 

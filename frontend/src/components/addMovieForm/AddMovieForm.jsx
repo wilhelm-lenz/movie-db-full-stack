@@ -30,9 +30,11 @@ const AddMovieForm = ({ movie }) => {
     }
   }, []);
 
+  const localURL = import.meta.env.VITE_BACKAND_URL;
+
   const createMovie = async () => {
     try {
-      const res = await fetch(`http://localhost:8000/api/v1/movies`, {
+      const res = await fetch(`${localURL}/api/v1/movies`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -79,23 +81,20 @@ const AddMovieForm = ({ movie }) => {
 
   const updatedMovie = async () => {
     try {
-      const res = await fetch(
-        `http://localhost:8000/api/v1/movies/${movie._id}`,
-        {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            title,
-            year,
-            director,
-            genres,
-            tomato: { rating },
-            posterUrl,
-            plot: description,
-            runtime,
-          }),
-        }
-      );
+      const res = await fetch(`${localURL}/api/v1/movies/${movie._id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title,
+          year,
+          director,
+          genres,
+          tomato: { rating },
+          posterUrl,
+          plot: description,
+          runtime,
+        }),
+      });
       const result = await res.json();
       if (result.success) {
         setMovies((prevMovies) =>

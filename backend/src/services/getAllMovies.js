@@ -1,18 +1,5 @@
 const { MovieDAO } = require("../data_access");
-
-const asMovieListItem = (movie) => {
-  return {
-    _id: movie._id,
-    poster: movie.poster,
-    title: movie.title,
-    director: movie.director,
-    year: movie.year,
-    genres: movie.genres,
-    tomato: movie.tomato,
-    plot: movie.plot,
-    runtime: movie.runtime,
-  };
-};
+const { asMovieListItem } = require("../helpers");
 
 exports.getAllMovies = async () => {
   const movies = await MovieDAO.findAllMovies();

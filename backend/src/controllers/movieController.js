@@ -21,16 +21,8 @@ exports.getAllMoviesCtrl = async (_, res) => {
 exports.createMovieCtrl = async (req, res) => {
   try {
     const movieInfo = req.body;
-    const newMovieInfo = {
-      title: movieInfo.title,
-      year: parseInt(movieInfo.year),
-      director: movieInfo.director,
-      genres: movieInfo.genres.split(", ").map((genre) => genre.trim()),
-      tomato: { rating: parseFloat(movieInfo.tomato.rating) || null },
-      poster: movieInfo.posterUrl,
-      plot: movieInfo.plot,
-      runtime: parseInt(movieInfo.runtime),
-    };
+
+    const newMovieInfo = parsingDataFromBody(movieInfo);
 
     const movies = await MovieService.addMovie(newMovieInfo);
 
@@ -53,16 +45,7 @@ exports.updateMovieCtrl = async (req, res) => {
     const movieId = await req.params.id;
     const movieInfo = await req.body;
 
-    const updateData = {
-      title: movieInfo.title,
-      year: parseInt(movieInfo.year),
-      director: movieInfo.director,
-      genres: movieInfo.genres.split(",").map((genre) => genre.trim()),
-      tomato: { rating: parseFloat(movieInfo.tomato.rating) || null },
-      poster: movieInfo.posterUrl,
-      plot: movieInfo.plot,
-      runtime: parseInt(movieInfo.runtime),
-    };
+    const updateData = parsingDataFromBody(movieInfo);
 
     const updateMoviesArray = await MovieService.updateMovie(
       movieId,

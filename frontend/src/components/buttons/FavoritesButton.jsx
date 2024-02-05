@@ -5,6 +5,8 @@ import { MovieContext } from "../../contextes/MovieContext";
 import PlusIcon from "../svg/PlusIcon";
 import MinusIcon from "../svg/MinusIcon";
 
+const localURL = import.meta.env.VITE_BACKAND_URL;
+
 const FavoritsButton = ({ btnText, movieId }) => {
   const { favoriteMovies, setFavoriteMovies, isInFavorites, setIsInFavorites } =
     useContext(MovieContext);
@@ -12,19 +14,15 @@ const FavoritsButton = ({ btnText, movieId }) => {
   useEffect(() => {
     const isFav = favoriteMovies.some((movie) => movie._id === movieId);
     setIsInFavorites(isFav);
-    console.log(isFav);
   }, [movieId]);
 
   const handleAddToFavoriteClick = async () => {
     try {
-      const res = await fetch(
-        `http://localhost:8000/api/v1/favorites/${movieId}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ movieId }),
-        }
-      );
+      const res = await fetch(`${localURL}/api/v1/favorites/${movieId}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ movieId }),
+      });
       const dataObj = await res.json();
       const { status, data, error } = dataObj;
       if (status !== "success") console.log(error);
@@ -38,14 +36,11 @@ const FavoritsButton = ({ btnText, movieId }) => {
 
   const handleAddDeleteFromFavoriteClick = async () => {
     try {
-      const res = await fetch(
-        `http://localhost:8000/api/v1/favorites/${movieId}`,
-        {
-          method: "DELETE",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ movieId }),
-        }
-      );
+      const res = await fetch(`${localURL}/api/v1/favorites/${movieId}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ movieId }),
+      });
       const dataObj = await res.json();
       const { status, error } = dataObj;
       if (status !== "success") console.log(error);
