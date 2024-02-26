@@ -17,7 +17,6 @@ exports.makeMovie = ({
   awards,
   type,
 }) => {
-  console.log("Title: ", typeof title);
   if (
     typeof title === "undefined" ||
     typeof title !== "string" ||
@@ -25,11 +24,11 @@ exports.makeMovie = ({
   ) {
     throw new Error("Title Value is invalid!");
   }
-  console.log("year: ", typeof year);
+
   if (typeof year === "undefined" || typeof year !== "number" || year === 0) {
     throw new Error("The Year Value is invalid!");
   }
-  console.log("director: ", typeof director);
+
   if (
     typeof director === "undefined" ||
     typeof director !== "string" ||
@@ -38,7 +37,6 @@ exports.makeMovie = ({
     throw new Error("Director Value is invalid!");
   }
 
-  console.log("genres: ", typeof genres);
   if (!Array.isArray(genres) || genres.length === 0) {
     throw new Error("At least one genre required");
   }
@@ -50,7 +48,6 @@ exports.makeMovie = ({
     throw new Error("Rating Value is invalid!");
   }
 
-  console.log("poster: ", typeof poster);
   if (
     typeof poster === "undefined" ||
     typeof poster !== "string" ||

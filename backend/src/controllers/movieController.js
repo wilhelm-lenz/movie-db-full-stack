@@ -1,4 +1,5 @@
 const { OK, INTERNAL_SERVER_ERROR } = require("../data_access/httpStatusCodes");
+const { parsingDataFromBody } = require("../helpers");
 const { MovieService } = require("../services");
 
 exports.getAllMoviesCtrl = async (_, res) => {

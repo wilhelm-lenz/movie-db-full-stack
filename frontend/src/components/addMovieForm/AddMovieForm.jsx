@@ -14,7 +14,7 @@ const AddMovieForm = ({ movie }) => {
   const [genres, setGenres] = useState([]);
   const [rating, setRating] = useState("");
   const [posterUrl, setPosterURL] = useState("");
-  const [description, setDescription] = useState("");
+  const [plot, setPlot] = useState("");
   const [runtime, setRuntime] = useState("");
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const AddMovieForm = ({ movie }) => {
       setGenres(movie.genres.map((genre) => genre).join(", ") || "");
       setRating(movie.tomato.rating.toString() || "");
       setPosterURL(movie.poster || "");
-      setDescription(movie.plot || "");
+      setPlot(movie.plot || "");
       setRuntime(movie.runtime.toString() || "");
     }
   }, []);
@@ -44,7 +44,7 @@ const AddMovieForm = ({ movie }) => {
           genres,
           tomato: { rating },
           posterUrl,
-          plot: description,
+          plot,
           runtime,
         }),
       });
@@ -62,7 +62,7 @@ const AddMovieForm = ({ movie }) => {
             genres,
             tomato: { rating },
             posterUrl,
-            plot: description,
+            plot,
             runtime,
           },
         ]);
@@ -75,7 +75,7 @@ const AddMovieForm = ({ movie }) => {
     setGenres("");
     setRating("");
     setPosterURL("");
-    setDescription("");
+    setPlot("");
     setRuntime("");
   };
 
@@ -91,7 +91,7 @@ const AddMovieForm = ({ movie }) => {
           genres,
           tomato: { rating },
           posterUrl,
-          plot: description,
+          plot,
           runtime,
         }),
       });
@@ -193,8 +193,8 @@ const AddMovieForm = ({ movie }) => {
           cols="30"
           rows="10"
           placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={plot}
+          onChange={(e) => setPlot(e.target.value)}
         ></textarea>
         <input
           type="button"
